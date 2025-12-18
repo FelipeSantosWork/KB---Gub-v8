@@ -45,9 +45,13 @@ def validate_with_jsonschema(data: Any, schema: Dict[str, Any]) -> List[str]:
     return errors
 
 def guardrails_checks(data: Dict[str, Any], allow_tags: bool = False, strict_component_ref: bool = False) -> Tuple[List[str], List[str]]:
+<<<<<<< HEAD
     """
     Return (errors, warnings)
     """
+=======
+    """Return (errors, warnings)"""
+>>>>>>> 6202a8b18dff225067f93cb3dc2f97942bcb825e
     errors: List[str] = []
     warnings: List[str] = []
 
@@ -75,8 +79,13 @@ def guardrails_checks(data: Dict[str, Any], allow_tags: bool = False, strict_com
             if not isinstance(title, str) or not title:
                 errors.append(f"[guard] cases[{ci}].title ausente ou vazio")
             else:
+<<<<<<< HEAD
                 if not (title.startswith("Deve") or title.startswith("Não deve")):
                     errors.append(f"[guard] cases[{ci}].title deve iniciar com 'Deve' ou 'Não deve'")
+=======
+                if not (title.startswith("Deve") or title.startswith("Nao deve")):
+                    errors.append(f"[guard] cases[{ci}].title deve iniciar com 'Deve' ou 'Nao deve'")
+>>>>>>> 6202a8b18dff225067f93cb3dc2f97942bcb825e
                 if strict_component_ref:
                     if not any(hint in title.lower() for hint in TITLE_COMPONENT_HINTS):
                         warnings.append(f"[guard] cases[{ci}].title nao parece referenciar componente/modal explicitamente (heuristica)")
@@ -164,8 +173,14 @@ def main():
     errors.extend(g_errors)
     warnings.extend(g_warnings)
 
+<<<<<<< HEAD
 
     print("\n==== Resultado da validacao ====\n")
+=======
+    print("
+==== Resultado da validacao ====
+")
+>>>>>>> 6202a8b18dff225067f93cb3dc2f97942bcb825e
     if errors:
         print(f"Erros ({len(errors)}):")
         for e in errors:
@@ -173,6 +188,7 @@ def main():
     else:
         print("Erros: nenhum")
 
+<<<<<<< HEAD
 
     if warnings:
         print(f"\nAvisos ({len(warnings)}):")
@@ -183,6 +199,19 @@ def main():
         print("\nAvisos: nenhum")
 
     print("\nResumo:")
+=======
+    if warnings:
+        print(f"
+Avisos ({len(warnings)}):")
+        for w in warnings:
+            print(f" - {w}")
+    else:
+        print("
+Avisos: nenhum")
+
+    print("
+Resumo:")
+>>>>>>> 6202a8b18dff225067f93cb3dc2f97942bcb825e
     suites_count = len(data.get("suites", [])) if isinstance(data, dict) else 0
     cases_count = 0
     if suites_count:
