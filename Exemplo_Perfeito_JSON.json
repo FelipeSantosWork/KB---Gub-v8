@@ -1,0 +1,149 @@
+
+{
+  "suites": [
+    {
+      "id": 1,
+      "title": "Presente do Gub",
+      "description": null,
+      "preconditions": null,
+      "suites": [],
+      "cases": [
+        {
+          "id": 1,
+          "title": "Deve desabilitar o botão ‘Salvar’ no modal ‘Novo usuário’ quando campos obrigatórios estão vazios",
+          "description": "Garantir que o botão ‘Salvar’ permaneça desabilitado até que os campos obrigatórios estejam preenchidos.",
+          "preconditions": "Usuário autenticado com permissão para cadastro; tela ‘Usuários’ acessível.",
+          "postconditions": null,
+          "priority": "alta",
+          "severity": "indefinido",
+          "type": "funcional",
+          "behavior": "indefinido",
+          "automation": "is-not-automated",
+          "status": "actual",
+          "is_flaky": "no",
+          "layer": "e2e",
+          "milestone": null,
+          "custom_fields": [],
+          "steps_type": "classic",
+          "steps": [
+            {"position": 1, "action": "Acessar a tela ‘Usuários’ e clicar em ‘Novo usuário’ para abrir o modal.", "expected_result": "", "data": "", "steps": []},
+            {"position": 2, "action": "No modal, deixar os campos obrigatórios (Nome, E-mail, CPF) vazios.", "expected_result": "", "data": "", "steps": []},
+            {"position": 3, "action": "Verificar o estado do botão ‘Salvar’.", "expected_result": "", "data": "", "steps": []},
+            {"position": 4, "action": "Resultado esperado: botão ‘Salvar’ permanece desabilitado e não permite submissão.", "expected_result": "", "data": "", "steps": []}
+          ],
+          "tags": [],
+          "params": [],
+          "is_muted": "no"
+        },
+        {
+          "id": 1,
+          "title": "Não deve aceitar e‑mail em formato inválido no modal ‘Novo usuário’",
+          "description": "Garantir validação de formato para o campo de e‑mail, bloqueando valores inválidos.",
+          "preconditions": "Usuário autenticado; modal ‘Novo usuário’ aberto.",
+          "postconditions": null,
+          "priority": "alta",
+          "severity": "indefinido",
+          "type": "funcional",
+          "behavior": "indefinido",
+          "automation": "is-not-automated",
+          "status": "actual",
+          "is_flaky": "no",
+          "layer": "e2e",
+          "milestone": null,
+          "custom_fields": [],
+          "steps_type": "classic",
+          "steps": [
+            {"position": 1, "action": "Preencher o campo ‘Nome’ com um valor válido (ex.: ‘Ana Teste’).", "expected_result": "", "data": "", "steps": []},
+            {"position": 2, "action": "Preencher o campo ‘CPF’ com um valor válido (ex.: ‘123.456.789-09’).", "expected_result": "", "data": "", "steps": []},
+            {"position": 3, "action": "Informar e‑mail inválido no campo ‘E‑mail’ (ex.: ‘user@’). Clicar em ‘Salvar’.", "expected_result": "", "data": "", "steps": []},
+            {"position": 4, "action": "Resultado esperado: exibir mensagem de erro de formato de e‑mail e impedir o salvamento.", "expected_result": "", "data": "", "steps": []}
+          ],
+          "tags": [],
+          "params": [],
+          "is_muted": "no"
+        },
+        {
+          "id": 1,
+          "title": "Deve bloquear cadastro com CPF já existente no modal ‘Novo usuário’",
+          "description": "Garantir que o sistema impeça cadastro duplicado quando o CPF já estiver registrado.",
+          "preconditions": "Usuário autenticado; existe um usuário previamente cadastrado com o CPF de teste.",
+          "postconditions": null,
+          "priority": "alta",
+          "severity": "indefinido",
+          "type": "funcional",
+          "behavior": "indefinido",
+          "automation": "is-not-automated",
+          "status": "actual",
+          "is_flaky": "no",
+          "layer": "e2e",
+          "milestone": null,
+          "custom_fields": [],
+          "steps_type": "classic",
+          "steps": [
+            {"position": 1, "action": "Abrir o modal ‘Novo usuário’ na tela ‘Usuários’.", "expected_result": "", "data": "", "steps": []},
+            {"position": 2, "action": "Preencher ‘Nome’ e ‘E‑mail’ com valores válidos.", "expected_result": "", "data": "", "steps": []},
+            {"position": 3, "action": "Preencher ‘CPF’ com um valor já existente no sistema. Clicar em ‘Salvar’.", "expected_result": "", "data": "", "steps": []},
+            {"position": 4, "action": "Resultado esperado: exibir mensagem de duplicidade de CPF e impedir o cadastro.", "expected_result": "", "data": "", "steps": []}
+          ],
+          "tags": [],
+          "params": [],
+          "is_muted": "no"
+        },
+        {
+          "id": 1,
+          "title": "Deve limitar o campo ‘Nome’ a 50 caracteres no modal ‘Novo usuário’",
+          "description": "Garantir que o campo ‘Nome’ respeite o limite máximo de 50 caracteres e impeça excedentes.",
+          "preconditions": "Usuário autenticado; modal ‘Novo usuário’ aberto.",
+          "postconditions": null,
+          "priority": "media",
+          "severity": "indefinido",
+          "type": "funcional",
+          "behavior": "indefinido",
+          "automation": "is-not-automated",
+          "status": "actual",
+          "is_flaky": "no",
+          "layer": "e2e",
+          "milestone": null,
+          "custom_fields": [],
+          "steps_type": "classic",
+          "steps": [
+            {"position": 1, "action": "No modal ‘Novo usuário’, focar o campo ‘Nome’.", "expected_result": "", "data": "", "steps": []},
+            {"position": 2, "action": "Digitar uma string com 51 caracteres.", "expected_result": "", "data": "", "steps": []},
+            {"position": 3, "action": "Tentar salvar clicando em ‘Salvar’.", "expected_result": "", "data": "", "steps": []},
+            {"position": 4, "action": "Resultado esperado: impedir excedente e apresentar mensagem de limite (máx. 50 caracteres).", "expected_result": "", "data": "", "steps": []}
+          ],
+          "tags": [],
+          "params": [],
+          "is_muted": "no"
+        },
+        {
+          "id": 1,
+          "title": "Deve fechar o modal ‘Novo usuário’ ao pressionar ‘Esc’ sem salvar alterações",
+          "description": "Garantir que a tecla ‘Esc’ feche o modal e que dados não sejam persistidos quando não houver confirmação.",
+          "preconditions": "Usuário autenticado; modal ‘Novo usuário’ aberto.",
+          "postconditions": null,
+          "priority": "baixa",
+          "severity": "indefinido",
+          "type": "funcional",
+          "behavior": "indefinido",
+          "automation": "is-not-automated",
+          "status": "actual",
+          "is_flaky": "no",
+          "layer": "e2e",
+          "milestone": null,
+          "custom_fields": [],
+          "steps_type": "classic",
+          "steps": [
+            {"position": 1, "action": "Abrir o modal ‘Novo usuário’ a partir da tela ‘Usuários’.", "expected_result": "", "data": "", "steps": []},
+            {"position": 2, "action": "Preencher alguns campos (ex.: ‘Nome’ e ‘E‑mail’) sem salvar.", "expected_result": "", "data": "", "steps": []},
+            {"position": 3, "action": "Pressionar a tecla ‘Esc’.", "expected_result": "", "data": "", "steps": []},
+            {"position": 4, "action": "Resultado esperado: modal é fechado e os dados inseridos não são persistidos.", "expected_result": "", "data": "", "steps": []}
+          ],
+          "tags": [],
+          "params": [],
+          "is_muted": "no"
+        }
+      ]
+    }
+  ]
+}

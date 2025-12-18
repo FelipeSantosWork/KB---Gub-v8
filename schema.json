@@ -1,0 +1,230 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.org/qase/schema.json",
+  "title": "Qase Test Suite Schema (Gub v8)",
+  "description": "Schema para validar a estrutura de suites/cases/steps conforme diretrizes Gub v8.",
+  "type": "object",
+  "required": [
+    "suites"
+  ],
+  "properties": {
+    "suites": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/Suite"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "definitions": {
+    "Suite": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "description",
+        "preconditions",
+        "suites",
+        "cases"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "const": 1
+        },
+        "title": {
+          "type": "string",
+          "const": "Presente do Gub"
+        },
+        "description": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "preconditions": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "suites": {
+          "type": "array"
+        },
+        "cases": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/Case"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "Case": {
+      "type": "object",
+      "required": [
+        "id",
+        "title",
+        "description",
+        "preconditions",
+        "postconditions",
+        "priority",
+        "severity",
+        "type",
+        "behavior",
+        "automation",
+        "status",
+        "is_flaky",
+        "layer",
+        "milestone",
+        "custom_fields",
+        "steps_type",
+        "steps",
+        "tags",
+        "params",
+        "is_muted"
+      ],
+      "properties": {
+        "id": {
+          "type": "integer",
+          "const": 1
+        },
+        "title": {
+          "type": "string",
+          "pattern": "^(Deve|Não deve).*"
+        },
+        "description": {
+          "type": "string",
+          "minLength": 1
+        },
+        "preconditions": {
+          "type": "string"
+        },
+        "postconditions": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "alta",
+            "media",
+            "baixa"
+          ]
+        },
+        "severity": {
+          "type": "string",
+          "const": "indefinido"
+        },
+        "type": {
+          "type": "string",
+          "const": "funcional"
+        },
+        "behavior": {
+          "type": "string",
+          "const": "indefinido"
+        },
+        "automation": {
+          "type": "string",
+          "const": "is-not-automated"
+        },
+        "status": {
+          "type": "string",
+          "const": "actual"
+        },
+        "is_flaky": {
+          "type": "string",
+          "const": "no"
+        },
+        "layer": {
+          "type": "string",
+          "const": "e2e"
+        },
+        "milestone": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "custom_fields": {
+          "type": "array"
+        },
+        "steps_type": {
+          "type": "string",
+          "const": "classic"
+        },
+        "steps": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 8,
+          "items": {
+            "$ref": "#/definitions/Step"
+          },
+          "contains": {
+            "type": "object",
+            "properties": {
+              "action": {
+                "type": "string",
+                "pattern": ".*Resultado esperado: .+"
+              }
+            },
+            "required": [
+              "action"
+            ]
+          }
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "params": {
+          "type": "array"
+        },
+        "is_muted": {
+          "type": "string",
+          "const": "no"
+        }
+      },
+      "additionalProperties": false
+    },
+    "Step": {
+      "type": "object",
+      "required": [
+        "position",
+        "action",
+        "expected_result",
+        "data",
+        "steps"
+      ],
+      "properties": {
+        "position": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "action": {
+          "type": "string",
+          "minLength": 1
+        },
+        "expected_result": {
+          "type": "string",
+          "const": ""
+        },
+        "data": {
+          "type": "string",
+          "const": ""
+        },
+        "steps": {
+          "type": "array",
+          "maxItems": 0
+        }
+      },
+      "additionalProperties": false
+    }
+  }
+}
